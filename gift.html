@@ -9,22 +9,41 @@
     body {
       margin: 0;
       overflow: hidden;
+      height: 100dvh;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #5f9cff, #a855f7);
-      height: 100vh;
-      position: relative;
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       text-align: center;
-      padding: 0 12px;
-      box-sizing: border-box;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 25px;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .gift-btn {
+      padding: 15px 32px;
+      font-size: 20px;
+      border: none;
+      border-radius: 16px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gift-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 18px rgba(255, 77, 109, 0.7);
     }
 
     .emoji {
-      position: absolute;
+      position: fixed;
       font-size: 2rem;
       pointer-events: none;
       animation: float linear infinite;
@@ -33,42 +52,6 @@
     @keyframes float {
       from { transform: translateY(0); }
       to { transform: translateY(-120vh); }
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .gift-btn {
-      padding: 15px 30px;
-      font-size: 20px;
-      border: none;
-      border-radius: 14px;
-      background: #ff4d6d;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .gift-btn:hover {
-      transform: scale(1.1);
-    }
-
-    /* 📱 Mobile responsiveness */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .gift-btn {
-        font-size: 18px;
-        padding: 12px 24px;
-      }
-
-      .emoji {
-        font-size: 1.6rem;
-      }
     }
   </style>
 </head>
@@ -79,10 +62,8 @@
 
   <script>
     const emojis = [
-      "🎁", "💝", "🌹", "✨", "💖", "💕", "🥰",
-      "I love you ❤️",
-      "Love you forever 💕",
-      "My valentine 💖"
+      "🎁","💝","🌹","✨","💖","💕","🥰",
+      "I love you ❤️","Love you forever 💕","My Valentine 💖"
     ];
 
     function createEmoji() {
@@ -94,13 +75,13 @@
         emoji.innerText.toLowerCase().includes("love") ||
         emoji.innerText.toLowerCase().includes("valentine")
       ) {
-        emoji.style.fontSize = window.innerWidth < 600 ? "1.2rem" : "1.6rem";
+        emoji.style.fontSize = "1.6rem";
         emoji.style.fontWeight = "bold";
         emoji.style.padding = "6px 12px";
         emoji.style.borderRadius = "12px";
         emoji.style.background = "linear-gradient(45deg, #ff6ec4, #7873f5)";
         emoji.style.color = "white";
-        emoji.style.boxShadow = "0 0 12px rgba(255, 110, 196, 0.8)";
+        emoji.style.boxShadow = "0 0 12px rgba(255,110,196,0.8)";
         emoji.style.textShadow = "0 0 6px rgba(255,255,255,0.9)";
         emoji.style.backdropFilter = "blur(6px)";
       }
